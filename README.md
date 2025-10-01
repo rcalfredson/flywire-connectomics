@@ -48,15 +48,13 @@ This section serves as an index of analyses implemented in Jupyter notebooks. Ov
   - Maps each neuron to the set of unique partner cell types it connects with.  
   - Produces the global distribution, comparable to Hemibrain results, and highlights neurons of interest (e.g., oviIN, oviEN, PAL02, PAL04, Earmuff, Tophat).
 
-  ---
+---
 
-  ## Folders
+## Folders
 
 - **data/**  
   Local folder to store downloaded FlyWire datasets. This folder is ignored by git (except for `.gitkeep`).  
 
 - **figures/**
   Holds plots and visualizations produced by the notebooks.
-
----
 
