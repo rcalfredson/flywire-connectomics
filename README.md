@@ -35,3 +35,28 @@ The `.gitkeep` file ensures that the `data/` directory is tracked by git even if
 ### Running the analysis
 
 Once the required files are in place, you can open the provided Jupyter notebook(s) and run the analysis. The first available notebook will reproduce the **cell-type partner diversity distribution** for all neurons in the connectome.
+
+---
+
+## Notebooks
+
+This section serves as an index of analyses implemented in Jupyter notebooks. Over time, more notebooks will be added here as the project expands.
+
+- [**partnering_cell_types.ipynb**](partnering_cell_types.ipynb)  
+  Constructs the distribution of the number of unique partner cell types per neuron in the FlyWire connectome.  
+  - Loads raw FlyWire data (`connections_princeton_no_threshold.csv.gz` and `consolidated_cell_types.csv.gz`).  
+  - Maps each neuron to the set of unique partner cell types it connects with.  
+  - Produces the global distribution, comparable to Hemibrain results, and highlights neurons of interest (e.g., oviIN, oviEN, PAL02, PAL04, Earmuff, Tophat).
+
+  ---
+
+  ## Folders
+
+- **data/**  
+  Local folder to store downloaded FlyWire datasets. This folder is ignored by git (except for `.gitkeep`).  
+
+- **figures/**
+  Holds plots and visualizations produced by the notebooks.
+
+---
+
