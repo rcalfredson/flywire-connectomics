@@ -68,6 +68,6 @@ This section serves as an index of analyses implemented in Jupyter notebooks. Ov
 - **data/**  
   Local folder to store downloaded FlyWire datasets. This folder is ignored by git (except for `.gitkeep`).  
 
-- **figures/**
+- **figures/**  
   Holds plots and visualizations produced by the notebooks.
 
