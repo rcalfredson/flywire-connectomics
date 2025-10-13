@@ -1,5 +1,5 @@
 # flywire-connectomics
-Tools and notebooks for analyzing the FlyWire connectome, beginning with cell-type partner diversity distributions and expanding to circuit-level analyses.
+Tools and notebooks for analyzing the FlyWire connectome, beginning with cell-type partner diversity distributions and extending to analyses of input primacy and circuit-level reciprocity.
 
 ## Setup
 
@@ -47,6 +47,19 @@ This section serves as an index of analyses implemented in Jupyter notebooks. Ov
   - Loads raw FlyWire data (`connections_princeton_no_threshold.csv.gz` and `consolidated_cell_types.csv.gz`).  
   - Maps each neuron to the set of unique partner cell types it connects with.  
   - Produces the global distribution, comparable to Hemibrain results, and highlights neurons of interest (e.g., oviIN, oviEN, PAL02, PAL04, Earmuff, Tophat).
+
+- [**input_primacy.ipynb**](input_primacy.ipynb)  
+  Quantifies **input primacy** for a specified neuron type — that is, how strongly each of its presynaptic cell types targets it relative to that type’s other outputs.  
+  - Loads the raw FlyWire connectivity table (`connections_princeton_no_threshold.csv.gz`) and cell-type annotation file (`consolidated_cell_types.csv.gz`).  
+  - Applies a minimum synapse threshold (default: 3) to remove extremely weak or potentially spurious connections.  
+  - For each input cell type connecting to the chosen target neuron:
+    1. Collapses all synaptic inputs to the target by presynaptic **cell type**.  
+    2. Fetches the full set of **outputs** of that presynaptic type across the connectome.  
+    3. Determines where the target neuron’s **cell type** ranks among those outputs.  
+  - Produces a ranked table summarizing each input type’s weight and rank, with “strong” vs “weak” designation (default cutoff: ≥ 100 synapses).  
+  - Generates a **stacked bar plot** visualizing the distribution of “strong” and “weak” input types across the first few primacy ranks (default: top 10).  
+
+  This analysis highlights whether a target neuron (e.g., *SMP544*) is a **dominant output** for many of its presynaptic partners or whether its inputs are more **distributed** across different targets.
 
 ---
 
