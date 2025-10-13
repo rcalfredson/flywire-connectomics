@@ -61,6 +61,16 @@ This section serves as an index of analyses implemented in Jupyter notebooks. Ov
 
   This analysis highlights whether a target neuron (e.g., *SMP544*) is a **dominant output** for many of its presynaptic partners or whether its inputs are more **distributed** across different targets.
 
+- [**reciprocity_analysis.ipynb**](reciprocity_analysis.ipynb)  
+  Examines **reciprocal connectivity** between a target neuron and its partner cell types, quantifying how balanced their bidirectional synaptic weights are.  
+  - Loads the FlyWire connectivity table (`connections_princeton_no_threshold.csv.gz`) and cell-type annotation file (`consolidated_cell_types.csv.gz`).  
+  - Aggregates inbound (partner → target) and outbound (target → partner) synaptic weights for each partner neuron.  
+  - Merges these into a unified table showing both directions of connectivity (`in_w`, `out_w`) and associated cell-type annotations.  
+  - Visualizes reciprocity as a **scatter plot** of `in_w` vs. `out_w` with a shaded **wedge** around the diagonal (default: ±20°), highlighting pairs with approximately balanced bidirectional strength.  
+  - Annotates the most reciprocal partners by geometric mean synaptic weight, color-coding each labeled cell type and including a legend for clarity.  
+
+  This analysis helps identify whether the target neuron (e.g., *oviIN Right*) engages in **mutual, directional, or unidirectional** synaptic relationships with its partners, providing insight into potential feedback loops or bidirectional motifs in the circuit.
+
 ---
 
 ## Folders
