@@ -14,6 +14,22 @@ You’ll need to download two files from the FlyWire **Downloads** page:
   File: `connections_princeton_no_threshold.csv.gz`  
   Raw, no-threshold synaptic connectivity table. One row per connected pair of neurons, including `pre_root_id`, `post_root_id`, neuropil, synapse count, and predicted NT type.  
 
+- **Classification / Hierarchical Annotations (1 MB)**  
+  File: `classification.csv.gz`  
+  Provides hierarchical anatomical annotations for every neuron, including its **super_class**, **class**, **sub_class**, **hemilineage**, **side**, and **nerve**.  
+  This file enables grouping neurons by broad anatomical or functional categories such as *SMP*, *LAL*, *ascending*, *descending*, and *central*.  
+
+  | Column | Description | Example values |
+  |---------|--------------|----------------|
+  | `root_id` | Unique neuron ID | 720575940632369439 |
+  | `flow` | One of three possible values describing directionality | ascending / descending / central |
+  | `super_class` | Highest-level anatomical grouping | e.g., sensory, central, descending |
+  | `class` | Intermediate grouping | e.g., LAL, SMP, FB |
+  | `sub_class` | Finer-grained subdivision | 96 unique values |
+  | `hemilineage` | Developmental lineage identifier | 199 unique values |
+  | `side` | Left / Right / Midline designation | left / right / midline |
+  | `nerve` | Nerve association (if applicable) | e.g., antennal, abdominal |
+
 > ⚠️ You will need a FlyWire account to access the downloads. Sign up or log in at [codex.flywire.ai](https://codex.flywire.ai).
 
 ### Folder structure
@@ -70,6 +86,17 @@ This section serves as an index of analyses implemented in Jupyter notebooks. Ov
   - Annotates the most reciprocal partners by geometric mean synaptic weight, color-coding each labeled cell type and including a legend for clarity.  
 
   This analysis helps identify whether the target neuron (e.g., *oviIN Right*) engages in **mutual, directional, or unidirectional** synaptic relationships with its partners, providing insight into potential feedback loops or bidirectional motifs in the circuit.
+
+- [**input_composition_pal02_pal04.ipynb**](input_composition_pal02_pal04.ipynb)  
+  Compares the **input composition** of two closely related neuron types, *PAL02* and *PAL04*, across both hemispheres.  
+  - Uses all three FlyWire datasets (`connections_princeton_no_threshold.csv.gz`, `consolidated_cell_types.csv.gz`, and `classification.csv.gz`).  
+  - Aggregates total input synaptic weights (`in_w`) for each **presynaptic cell type** and **super_class**.  
+  - Computes each cell type’s **fraction of total input** by summing synaptic weights across all upstream neurons of that type and dividing by the target’s total input.  
+  - Merges left and right hemispheric data and averages input fractions to produce hemisphere-independent summaries.  
+  - Generates bar plots of input composition by both `primary_type` and `super_class`, exporting figures to the `figures/` folder.  
+
+  This notebook provides a clear comparison of input sources to *PAL02* and *PAL04*, highlighting differences in both **quantitative strength** and **qualitative composition** of their upstream partners.  
+  Future extensions may test for enrichment of specific **neuropil domains** or **modality biases** between the two neuron types.
 
 ---
 
